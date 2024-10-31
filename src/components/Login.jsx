@@ -21,27 +21,27 @@ function Login() {
       return;
     }
 
-    // try {
-    //   const response = await fetch('http://localhost:3000/auth/login', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({ email, password }),
-    //   });
+    try {
+      const response = await fetch('http://localhost:3000/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    //   if (response.ok) {
-    //     const data = await response.json();
-    //     localStorage.setItem('token', data.token);
-    //     navigate('/dashboard');
-    //   } else {
-    //     const errorData = await response.json();
-    //     setError(errorData.error || 'Login failed');
-    //   }
-    // } catch (error) {
-    //   console.error('Error:', error);
-    //   setError('An error occurred. Please try again.');
-    // }
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('jwt', data.token);
+        navigate('/dashboard');
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message || 'Login failed');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('An error occurred. Please try again.');
+    }
   };
 
   return (
