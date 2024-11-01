@@ -1,5 +1,5 @@
 .navbar {
-    width: 200px;
+    width: 180px;
     transition: width 0.3s;
     background: #8a0000;
     color: white;
@@ -14,7 +14,7 @@
   }
   
   .navbar.closed {
-    width: 60px;
+    width: 50px;
   }
   
   .toggle-btn {
@@ -49,9 +49,9 @@
   }
   
   .icon {
-    font-size: 20px;
+    font-size: 17px;
     transition: color 0.3s;
-    padding-left: 6px;
+    padding-left: 3px;
   }
   
   .text {

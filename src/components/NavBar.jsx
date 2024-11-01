@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FaHome, FaInfoCircle, FaStar, FaSignOutAlt } from 'react-icons/fa';
+import { FaHome, FaStar, FaSignOutAlt } from 'react-icons/fa';
 import { FaBarsStaggered } from 'react-icons/fa6';
+import { IoIosAddCircle } from "react-icons/io";
 import '../NavBar.css';
 
 const NavBar = () => {
@@ -22,8 +23,8 @@ const NavBar = () => {
           <span className="text">{isOpen && 'Home'}</span>
         </div>
         <div className="nav-item">
-          <FaInfoCircle className="icon" />
-          <span className="text">{isOpen && 'Info'}</span>
+          <IoIosAddCircle className="icon" />
+          <span className="text">{isOpen && 'Add'}</span>
         </div>
         <div className="nav-item">
           <FaStar className="icon" />
