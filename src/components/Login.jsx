@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { login, isAuthenticated } = useContext(AuthContext);
 
   const validateEmail = (email) => {
     return email.endsWith('@stud.ase.ro');
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/');
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,8 +40,8 @@ function Login() {
 
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem('jwt', data.token);
-        navigate('/dashboard');
+        login(data.jwt);
+        navigate('/');
       } else {
         const errorData = await response.json();
         setError(errorData.message || 'Login failed');

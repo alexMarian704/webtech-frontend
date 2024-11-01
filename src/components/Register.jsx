@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 function Register() {
     const [email, setEmail] = useState('');
@@ -7,10 +8,17 @@ function Register() {
     const [name, setName] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const { login, isAuthenticated } = useContext(AuthContext);
 
     const validateEmail = (email) => {
         return email.endsWith('@stud.ase.ro');
     };
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate('/');
+        }
+    }, [isAuthenticated, navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,25 +31,25 @@ function Register() {
         }
 
         try {
-          const response = await fetch('http://localhost:3000/auth/register', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, name, password }),
-          });
+            const response = await fetch('http://localhost:3000/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, name, password }),
+            });
 
-          if (response.ok) {
-            const data = await response.json();
-            localStorage.setItem('jwt', data.token);
-            navigate('/dashboard');
-          } else {
-            const errorData = await response.json();
-            setError(errorData.message || 'Register failed');
-          }
+            if (response.ok) {
+                const data = await response.json();
+                login(data.jwt);
+                navigate('/');
+            } else {
+                const errorData = await response.json();
+                setError(errorData.message || 'Register failed');
+            }
         } catch (error) {
-          console.error('Error:', error);
-          setError('An error occurred. Please try again.');
+            console.error('Error:', error);
+            setError('An error occurred. Please try again.');
         }
     };
 

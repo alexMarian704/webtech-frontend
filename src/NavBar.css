@@ -1,0 +1,93 @@
+.navbar {
+    width: 200px;
+    transition: width 0.3s;
+    background: #8a0000;
+    color: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding-top: 11px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .navbar.closed {
+    width: 60px;
+  }
+  
+  .toggle-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    color: white;
+    transition: transform 0.3s;
+  }
+  
+  .nav-items {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+  }
+  
+  .nav-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .icon {
+    font-size: 20px;
+    transition: color 0.3s;
+    padding-left: 6px;
+  }
+  
+  .text {
+    font-size: 15px;
+    margin-left: 10px;
+    opacity: 1;
+    transition: opacity 0.3s ease, margin-left 0.3s ease;
+    white-space: nowrap;
+  }
+  
+  .navbar.closed .text {
+    opacity: 0;
+    margin-left: 0;
+  }
+  
+  .logout-section {
+    width: 100%;
+  }
+  
+  .logout-btn {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+ 
+  

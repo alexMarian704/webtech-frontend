@@ -3,14 +3,10 @@ import React, { createContext, useState, useEffect } from 'react';
 export const AuthContext = createContext();
 
 function AuthProvider({ children }) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
     const token = localStorage.getItem('jwt');
-    if (token) {
-      setIsAuthenticated(true);
-    }
-  }, []);
+    return !!token;
+  });
 
   const login = (token) => {
     localStorage.setItem('jwt', token);
